@@ -92,12 +92,12 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-purple-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-red-500 mb-2">Pop Now Link Generator</h1>
-          <p className="text-gray-600">Generate multiple Pop Now product links with ease</p>
+          <h1 className="text-4xl font-bold text-emerald-400 mb-2">Pop Now Link Generator</h1>
+          <p className="text-slate-300">Generate multiple Pop Now product links with ease</p>
         </div>
 
         {/* How to Use Section */}

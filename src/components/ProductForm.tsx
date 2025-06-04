@@ -45,27 +45,27 @@ export const ProductForm = ({
   };
 
   return (
-    <Card className="mb-8 border border-gray-300">
-      <CardHeader className="border-b border-gray-300">
-        <CardTitle className="text-red-500 font-semibold">Product Configuration</CardTitle>
+    <Card className="mb-8 bg-slate-800 border-slate-700 shadow-xl">
+      <CardHeader className="border-b border-slate-700">
+        <CardTitle className="text-emerald-400 font-semibold">Product Configuration</CardTitle>
       </CardHeader>
       <CardContent className="p-6 space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Product Selection */}
           <div>
-            <Label htmlFor="product" className="text-sm font-medium mb-2 block">Product</Label>
+            <Label htmlFor="product" className="text-sm font-medium mb-2 block text-slate-200">Product</Label>
             <Select onValueChange={handleProductSelect}>
-              <SelectTrigger className="w-full">
+              <SelectTrigger className="w-full bg-slate-700 border-slate-600 text-slate-200 hover:bg-slate-600 transition-colors">
                 <SelectValue placeholder="Select a product" />
               </SelectTrigger>
-              <SelectContent className="bg-white border border-gray-200 z-50">
+              <SelectContent className="bg-slate-700 border-slate-600 z-50">
                 {productGroups.map((group) => (
                   <div key={group.name}>
-                    <div className="px-2 py-1.5 text-sm font-semibold text-gray-500 bg-gray-50">
+                    <div className="px-2 py-1.5 text-sm font-semibold text-emerald-400 bg-slate-800">
                       {group.name}
                     </div>
                     {group.products.map((product) => (
-                      <SelectItem key={product.name} value={product.name} className="pl-6">
+                      <SelectItem key={product.name} value={product.name} className="pl-6 text-slate-200 hover:bg-slate-600">
                         {product.name}
                       </SelectItem>
                     ))}
@@ -77,35 +77,35 @@ export const ProductForm = ({
 
           {/* Product Number */}
           <div>
-            <Label htmlFor="productNumber" className="text-sm font-medium mb-2 block">Product Number</Label>
+            <Label htmlFor="productNumber" className="text-sm font-medium mb-2 block text-slate-200">Product Number</Label>
             <Input
               id="productNumber"
               value={selectedProduct?.productNumber || ""}
               placeholder="Auto-populated"
               disabled
-              className="bg-gray-50"
+              className="bg-slate-700 border-slate-600 text-slate-400"
             />
-            <p className="text-xs text-gray-500 mt-1">Auto-populated</p>
+            <p className="text-xs text-slate-500 mt-1">Auto-populated</p>
           </div>
 
           {/* Set Number Template */}
           <div>
-            <Label htmlFor="setTemplate" className="text-sm font-medium mb-2 block">Set Number Template</Label>
+            <Label htmlFor="setTemplate" className="text-sm font-medium mb-2 block text-slate-200">Set Number Template</Label>
             <Input
               id="setTemplate"
               value={selectedProduct?.setNumberTemplate || ""}
               placeholder="Auto-populated"
               disabled
-              className="bg-gray-50"
+              className="bg-slate-700 border-slate-600 text-slate-400"
             />
-            <p className="text-xs text-gray-500 mt-1">Auto-populated</p>
+            <p className="text-xs text-slate-500 mt-1">Auto-populated</p>
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Middle 5 Digits */}
           <div>
-            <Label htmlFor="middleDigits" className="text-sm font-medium mb-2 block">
+            <Label htmlFor="middleDigits" className="text-sm font-medium mb-2 block text-slate-200">
               Middle 5 Digits (XXXXX)
             </Label>
             <Input
@@ -117,15 +117,16 @@ export const ProductForm = ({
               }}
               placeholder="Enter 5 digits (e.g., 12345)"
               maxLength={5}
+              className="bg-slate-700 border-slate-600 text-slate-200 placeholder:text-slate-500 focus:border-emerald-400 focus:ring-emerald-400"
             />
-            <p className="text-xs text-gray-500 mt-1">
+            <p className="text-xs text-slate-500 mt-1">
               Links will be generated with this number + 0 to N in ascending order
             </p>
           </div>
 
           {/* Number of Links */}
           <div>
-            <Label htmlFor="numberOfLinks" className="text-sm font-medium mb-2 block">Number of Links</Label>
+            <Label htmlFor="numberOfLinks" className="text-sm font-medium mb-2 block text-slate-200">Number of Links</Label>
             <Input
               id="numberOfLinks"
               type="number"
@@ -133,8 +134,9 @@ export const ProductForm = ({
               onChange={(e) => setNumberOfLinks(parseInt(e.target.value) || 100)}
               min={1}
               max={1000}
+              className="bg-slate-700 border-slate-600 text-slate-200 focus:border-emerald-400 focus:ring-emerald-400"
             />
-            <p className="text-xs text-gray-500 mt-1">Maximum 1000 links</p>
+            <p className="text-xs text-slate-500 mt-1">Maximum 1000 links</p>
           </div>
         </div>
 
@@ -143,7 +145,7 @@ export const ProductForm = ({
           <Button
             onClick={onGenerateLinks}
             disabled={!selectedProduct || middleDigits.length !== 5}
-            className="w-full bg-red-400 hover:bg-red-500 text-white font-medium py-3 rounded-md transition-colors"
+            className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-medium py-3 rounded-md transition-all duration-200 shadow-lg hover:shadow-emerald-500/25 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Generate Links
           </Button>
