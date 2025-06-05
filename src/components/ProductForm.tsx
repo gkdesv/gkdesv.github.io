@@ -15,6 +15,7 @@ interface ProductFormProps {
   numberOfLinks: number;
   setNumberOfLinks: (count: number) => void;
   onGenerateLinks: () => void;
+  darkMode: boolean;
 }
 
 export const ProductForm = ({
@@ -25,7 +26,8 @@ export const ProductForm = ({
   setMiddleDigits,
   numberOfLinks,
   setNumberOfLinks,
-  onGenerateLinks
+  onGenerateLinks,
+  darkMode
 }: ProductFormProps) => {
   const handleProductSelect = (productName: string) => {
     // Find the product across all groups
@@ -45,27 +47,31 @@ export const ProductForm = ({
   };
 
   return (
-    <Card className="mb-8 bg-slate-800 border-slate-700 shadow-xl">
-      <CardHeader className="border-b border-slate-700">
-        <CardTitle className="text-emerald-400 font-semibold">Product Configuration</CardTitle>
+    <Card className={`mb-8 shadow-xl ${darkMode ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200'}`}>
+      <CardHeader className={`border-b ${darkMode ? 'border-slate-700' : 'border-slate-200'}`}>
+        <CardTitle className={`font-semibold ${darkMode ? 'text-emerald-400' : 'text-emerald-600'}`}>Product Configuration</CardTitle>
       </CardHeader>
       <CardContent className="p-6 space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Product Selection */}
           <div>
-            <Label htmlFor="product" className="text-sm font-medium mb-2 block text-slate-200">Product</Label>
+            <Label htmlFor="product" className={`text-sm font-medium mb-2 block ${darkMode ? 'text-slate-200' : 'text-slate-700'}`}>Product</Label>
             <Select onValueChange={handleProductSelect}>
-              <SelectTrigger className="w-full bg-slate-700 border-slate-600 text-slate-200 hover:bg-slate-600 transition-colors">
+              <SelectTrigger className={`w-full border transition-colors ${darkMode ? 'bg-slate-700 border-slate-600 text-slate-200 hover:bg-slate-600' : 'bg-white border-slate-300 text-slate-900 hover:bg-slate-50'}`}>
                 <SelectValue placeholder="Select a product" />
               </SelectTrigger>
-              <SelectContent className="bg-slate-700 border-slate-600 z-50">
+              <SelectContent className={`border z-50 ${darkMode ? 'bg-slate-700 border-slate-600' : 'bg-white border-slate-200'}`}>
                 {productGroups.map((group) => (
                   <div key={group.name}>
-                    <div className="px-2 py-1.5 text-sm font-semibold text-emerald-400 bg-slate-800">
+                    <div className={`px-2 py-1.5 text-sm font-semibold ${darkMode ? 'text-emerald-400 bg-slate-800' : 'text-emerald-600 bg-slate-100'}`}>
                       {group.name}
                     </div>
                     {group.products.map((product) => (
-                      <SelectItem key={product.name} value={product.name} className="pl-6 text-slate-200 hover:bg-slate-600">
+                      <SelectItem 
+                        key={product.name} 
+                        value={product.name} 
+                        className={`pl-6 ${darkMode ? 'text-slate-200 hover:bg-slate-600' : 'text-slate-700 hover:bg-slate-100'}`}
+                      >
                         {product.name}
                       </SelectItem>
                     ))}
@@ -77,35 +83,35 @@ export const ProductForm = ({
 
           {/* Product Number */}
           <div>
-            <Label htmlFor="productNumber" className="text-sm font-medium mb-2 block text-slate-200">Product Number</Label>
+            <Label htmlFor="productNumber" className={`text-sm font-medium mb-2 block ${darkMode ? 'text-slate-200' : 'text-slate-700'}`}>Product Number</Label>
             <Input
               id="productNumber"
               value={selectedProduct?.productNumber || ""}
               placeholder="Auto-populated"
               disabled
-              className="bg-slate-700 border-slate-600 text-slate-400"
+              className={darkMode ? 'bg-slate-700 border-slate-600 text-slate-400' : 'bg-slate-100 border-slate-300 text-slate-500'}
             />
-            <p className="text-xs text-slate-500 mt-1">Auto-populated</p>
+            <p className={`text-xs mt-1 ${darkMode ? 'text-slate-500' : 'text-slate-400'}`}>Auto-populated</p>
           </div>
 
           {/* Set Number Template */}
           <div>
-            <Label htmlFor="setTemplate" className="text-sm font-medium mb-2 block text-slate-200">Set Number Template</Label>
+            <Label htmlFor="setTemplate" className={`text-sm font-medium mb-2 block ${darkMode ? 'text-slate-200' : 'text-slate-700'}`}>Set Number Template</Label>
             <Input
               id="setTemplate"
               value={selectedProduct?.setNumberTemplate || ""}
               placeholder="Auto-populated"
               disabled
-              className="bg-slate-700 border-slate-600 text-slate-400"
+              className={darkMode ? 'bg-slate-700 border-slate-600 text-slate-400' : 'bg-slate-100 border-slate-300 text-slate-500'}
             />
-            <p className="text-xs text-slate-500 mt-1">Auto-populated</p>
+            <p className={`text-xs mt-1 ${darkMode ? 'text-slate-500' : 'text-slate-400'}`}>Auto-populated</p>
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Middle 5 Digits */}
           <div>
-            <Label htmlFor="middleDigits" className="text-sm font-medium mb-2 block text-slate-200">
+            <Label htmlFor="middleDigits" className={`text-sm font-medium mb-2 block ${darkMode ? 'text-slate-200' : 'text-slate-700'}`}>
               Middle 5 Digits (XXXXX)
             </Label>
             <Input
@@ -117,26 +123,26 @@ export const ProductForm = ({
               }}
               placeholder="Enter 5 digits (e.g., 12345)"
               maxLength={5}
-              className="bg-slate-700 border-slate-600 text-slate-200 placeholder:text-slate-500 focus:border-emerald-400 focus:ring-emerald-400"
+              className={`border ${darkMode ? 'bg-slate-700 border-slate-600 text-slate-200 placeholder:text-slate-500 focus:border-emerald-400 focus:ring-emerald-400' : 'bg-white border-slate-300 text-slate-900 placeholder:text-slate-400 focus:border-emerald-500 focus:ring-emerald-500'}`}
             />
-            <p className="text-xs text-slate-500 mt-1">
+            <p className={`text-xs mt-1 ${darkMode ? 'text-slate-500' : 'text-slate-400'}`}>
               Links will be generated with this number + 0 to N in ascending order
             </p>
           </div>
 
           {/* Number of Links */}
           <div>
-            <Label htmlFor="numberOfLinks" className="text-sm font-medium mb-2 block text-slate-200">Number of Links</Label>
+            <Label htmlFor="numberOfLinks" className={`text-sm font-medium mb-2 block ${darkMode ? 'text-slate-200' : 'text-slate-700'}`}>Number of Links</Label>
             <Input
               id="numberOfLinks"
               type="number"
               value={numberOfLinks}
-              onChange={(e) => setNumberOfLinks(parseInt(e.target.value) || 100)}
+              onChange={(e) => setNumberOfLinks(parseInt(e.target.value) || 300)}
               min={1}
               max={1000}
-              className="bg-slate-700 border-slate-600 text-slate-200 focus:border-emerald-400 focus:ring-emerald-400"
+              className={`${darkMode ? 'bg-slate-700 border-slate-600 text-slate-200 focus:border-emerald-400 focus:ring-emerald-400' : 'bg-white border-slate-300 text-slate-900 focus:border-emerald-500 focus:ring-emerald-500'}`}
             />
-            <p className="text-xs text-slate-500 mt-1">Maximum 1000 links</p>
+            <p className={`text-xs mt-1 ${darkMode ? 'text-slate-500' : 'text-slate-400'}`}>Maximum 1000 links</p>
           </div>
         </div>
 
@@ -145,7 +151,7 @@ export const ProductForm = ({
           <Button
             onClick={onGenerateLinks}
             disabled={!selectedProduct || middleDigits.length !== 5}
-            className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-medium py-3 rounded-md transition-all duration-200 shadow-lg hover:shadow-emerald-500/25 disabled:opacity-50 disabled:cursor-not-allowed"
+            className={`w-full font-medium py-3 rounded-md transition-all duration-200 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed ${darkMode ? 'bg-emerald-600 hover:bg-emerald-500 text-white hover:shadow-emerald-500/25' : 'bg-emerald-600 hover:bg-emerald-700 text-white hover:shadow-emerald-600/25'}`}
           >
             Generate Links
           </Button>

@@ -4,9 +4,10 @@ import { ExternalLink } from "lucide-react";
 
 interface GeneratedLinksProps {
   links: string[];
+  darkMode: boolean;
 }
 
-export const GeneratedLinks = ({ links }: GeneratedLinksProps) => {
+export const GeneratedLinks = ({ links, darkMode }: GeneratedLinksProps) => {
   const extractSetNumber = (link: string) => {
     // Extract just the set number after the product number and dash
     const parts = link.split('/');
@@ -23,32 +24,32 @@ export const GeneratedLinks = ({ links }: GeneratedLinksProps) => {
     
     return (
       <span className="font-mono">
-        <span className="text-slate-400">{prefix}</span>
-        <span className="font-bold text-emerald-400">{middleDigits}</span>
-        <span className="text-slate-400">{suffix}</span>
+        <span className={darkMode ? "text-slate-400" : "text-slate-500"}>{prefix}</span>
+        <span className={`font-bold ${darkMode ? "text-emerald-400" : "text-emerald-600"}`}>{middleDigits}</span>
+        <span className={darkMode ? "text-slate-400" : "text-slate-500"}>{suffix}</span>
       </span>
     );
   };
 
   return (
-    <Card id="generated-links" className="bg-slate-800 border-slate-700 shadow-xl">
-      <CardHeader className="border-b border-slate-700">
-        <CardTitle className="text-emerald-400 font-semibold">
+    <Card id="generated-links" className={`shadow-xl ${darkMode ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200'}`}>
+      <CardHeader className={`border-b ${darkMode ? 'border-slate-700' : 'border-slate-200'}`}>
+        <CardTitle className={`font-semibold ${darkMode ? 'text-emerald-400' : 'text-emerald-600'}`}>
           Generated Links ({links.length})
         </CardTitle>
       </CardHeader>
       <CardContent className="p-0">
-        <div className="max-h-96 overflow-y-auto mt-6 mx-6 mb-6 border border-slate-700 rounded-md bg-slate-900">
+        <div className={`max-h-96 overflow-y-auto mt-6 mx-6 mb-6 border rounded-md ${darkMode ? 'border-slate-700 bg-slate-900' : 'border-slate-200 bg-slate-50'}`}>
           <div className="space-y-1 p-4">
             {links.map((link, index) => {
               const setNumber = extractSetNumber(link);
               return (
-                <div key={index} className="flex items-center justify-between py-3 px-4 hover:bg-slate-800 rounded-lg transition-colors group">
+                <div key={index} className={`flex items-center justify-between py-3 px-4 rounded-lg transition-colors group ${darkMode ? 'hover:bg-slate-800' : 'hover:bg-white'}`}>
                   <a
                     href={link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm flex-1 hover:text-emerald-300 transition-colors cursor-pointer"
+                    className={`text-sm flex-1 transition-colors cursor-pointer ${darkMode ? 'hover:text-emerald-300' : 'hover:text-emerald-700'}`}
                   >
                     {highlightMiddleDigits(setNumber)}
                   </a>
@@ -56,9 +57,9 @@ export const GeneratedLinks = ({ links }: GeneratedLinksProps) => {
                     href={link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="ml-4 flex items-center gap-2 text-blue-400 hover:text-blue-300 text-sm font-medium transition-colors group-hover:text-blue-300"
+                    className={`ml-4 flex items-center gap-2 text-sm font-medium transition-colors ${darkMode ? 'text-blue-400 hover:text-blue-300 group-hover:text-blue-300' : 'text-blue-600 hover:text-blue-700 group-hover:text-blue-700'}`}
                   >
-                    <span>Open Link</span>
+                    <span>Link</span>
                     <ExternalLink className="w-4 h-4" />
                   </a>
                 </div>
