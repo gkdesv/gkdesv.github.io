@@ -25,19 +25,19 @@ const productGroups: ProductGroup[] = [
         name: "Big into Energy",
         productNumber: "195",
         setNumberTemplate: "1000XXXXX00585",
-        defaultMiddleDigits: "20249"
+        defaultMiddleDigits: "21547"
       },
       {
         name: "Exciting Macarons",
         productNumber: "40",
         setNumberTemplate: "1000XXXXX00280",
-        defaultMiddleDigits: "67735"
+        defaultMiddleDigits: "77045"
       },
       {
         name: "Have a Seat",
         productNumber: "50",
-        setNumberTemplate: "1000XXXXX00350",
-        defaultMiddleDigits: "75263"
+        setNumberTemplate: "1001XXXXX00350",
+        defaultMiddleDigits: "00300"
       }
     ]
   },
@@ -49,6 +49,17 @@ const productGroups: ProductGroup[] = [
         productNumber: "215",
         setNumberTemplate: "1000XXXXX00645",
         defaultMiddleDigits: "06489"
+      }
+    ]
+  },
+  {
+    name: "θSKULLPANDA",
+    products: [
+      {
+        name: "L'impressionnisme",
+        productNumber: "272",
+        setNumberTemplate: "1000XXXXX01904",
+        defaultMiddleDigits: "67770"
       }
     ]
   }
@@ -101,15 +112,40 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 bg-gradient-to-br light:from-slate-50 light:via-slate-100 light:to-slate-50">
-      <div className="container mx-auto px-4 py-8 max-w-4xl">
+    <div className={`min-h-screen transition-all duration-300 ${
+      darkMode 
+        ? 'bg-gradient-to-br from-slate-900/95 via-slate-800/90 to-slate-900/95' 
+        : 'bg-gradient-to-br from-slate-50/80 via-white/70 to-slate-100/80'
+    }`}>
+      {/* Liquid glass background overlay */}
+      <div className={`fixed inset-0 pointer-events-none ${
+        darkMode 
+          ? 'bg-gradient-to-br from-slate-900/20 via-transparent to-slate-800/20' 
+          : 'bg-gradient-to-br from-white/40 via-transparent to-slate-50/40'
+      } backdrop-blur-[1px]`} />
+      
+      <div className="container mx-auto px-4 py-8 max-w-4xl relative">
         {/* Header */}
         <div className="text-center mb-8 relative">
           <div className="absolute top-0 right-0">
             <ThemeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
           </div>
-          <h1 className="text-4xl font-bold text-emerald-400 dark:text-emerald-400 light:text-emerald-600 mb-2">Pop Now Link Generator</h1>
-          <p className="text-slate-300 dark:text-slate-300 light:text-slate-600">Generate multiple Pop Now product links with ease</p>
+          <div className={`backdrop-blur-md rounded-3xl p-8 border transition-all duration-300 ${
+            darkMode 
+              ? 'bg-slate-800/30 border-slate-700/50 shadow-2xl shadow-slate-900/20' 
+              : 'bg-white/60 border-slate-200/60 shadow-xl shadow-slate-400/10'
+          }`}>
+            <h1 className={`text-4xl font-bold mb-2 transition-colors ${
+              darkMode ? 'text-emerald-400' : 'text-emerald-600'
+            }`}>
+              Pop Now Link Generator
+            </h1>
+            <p className={`transition-colors ${
+              darkMode ? 'text-slate-300' : 'text-slate-600'
+            }`}>
+              Generate multiple Pop Now product links with ease
+            </p>
+          </div>
         </div>
 
         {/* How to Use Section */}
