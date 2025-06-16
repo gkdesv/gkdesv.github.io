@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -41,6 +40,18 @@ export const ProductForm = ({
     if (foundProduct) {
       setSelectedProduct(foundProduct);
       setMiddleDigits(foundProduct.defaultMiddleDigits);
+    }
+  };
+
+  const handleNumberOfLinksChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    if (value === '') {
+      setNumberOfLinks(0);
+    } else {
+      const numValue = parseInt(value);
+      if (!isNaN(numValue)) {
+        setNumberOfLinks(numValue);
+      }
     }
   };
 
@@ -134,10 +145,11 @@ export const ProductForm = ({
             <Input
               id="numberOfLinks"
               type="number"
-              value={numberOfLinks}
-              onChange={(e) => setNumberOfLinks(parseInt(e.target.value) || 300)}
+              value={numberOfLinks || ''}
+              onChange={handleNumberOfLinksChange}
               min={1}
               max={1000}
+              placeholder="Enter number of links"
               className="backdrop-blur-sm rounded-xl transition-all duration-200 bg-slate-700/50 border-slate-600/60 text-slate-200 focus:border-emerald-400/80 focus:ring-emerald-400/30 shadow-lg shadow-slate-900/10"
             />
             <p className="text-xs mt-1 text-slate-500">Maximum 1000 links</p>

@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { ProductForm } from "@/components/ProductForm";
 import { GeneratedLinks } from "@/components/GeneratedLinks";
@@ -23,19 +24,19 @@ const productGroups: ProductGroup[] = [
         name: "Big into Energy",
         productNumber: "195",
         setNumberTemplate: "1000XXXXX00585",
-        defaultMiddleDigits: "21547"
+        defaultMiddleDigits: "24691"
       },
       {
-        name: "Exciting Macarons",
+        name: "Exciting Macaron",
         productNumber: "40",
         setNumberTemplate: "1000XXXXX00280",
-        defaultMiddleDigits: "77045"
+        defaultMiddleDigits: "85463"
       },
       {
         name: "Have a Seat",
         productNumber: "50",
         setNumberTemplate: "1001XXXXX00350",
-        defaultMiddleDigits: "00300"
+        defaultMiddleDigits: "08113"
       }
     ]
   },
@@ -66,7 +67,7 @@ const productGroups: ProductGroup[] = [
 const Index = () => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [middleDigits, setMiddleDigits] = useState("");
-  const [numberOfLinks, setNumberOfLinks] = useState(300);
+  const [numberOfLinks, setNumberOfLinks] = useState(600);
   const [generatedLinks, setGeneratedLinks] = useState<string[]>([]);
 
   const generateLinks = () => {
